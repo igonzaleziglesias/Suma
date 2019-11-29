@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">ProbarSuma</string>
+    <string name="action_settings">Settings</string>
+    <string name="sumador">SUMADOR</string>
+    <string name="resultado">Resultado</string>
+    <string name="volver">VOLVER</string>
+</resources>
