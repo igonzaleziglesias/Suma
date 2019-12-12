@@ -18,29 +18,26 @@ class MainActivity : Activity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-        }
 
         suma.setOnClickListener{
+            //boton para realizar la suma,usando un intent
             val intent = Intent(this, Sumar::class.java)
-            var num1 = numero1.text
-            var num2 = numero2.text
-            intent.putExtra("num1",Integer.parseInt(num1.toString()))
-            intent.putExtra("num2",Integer.parseInt(num2.toString()))
-            startActivityForResult(intent, PICK_SUMA_REQUEST)
+            var num1 = numero1.text//primer operando
+            var num2 = numero2.text//segundo operando
+            intent.putExtra("num1",Integer.parseInt(num1.toString()))//pasamos el primer operando
+            intent.putExtra("num2",Integer.parseInt(num2.toString()))//Pasamos el segundo operando
+            startActivityForResult(intent, PICK_SUMA_REQUEST)//abrimos la otra activity
         }
 
 
     }
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {//obtenemos el resultado
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == PICK_SUMA_REQUEST) {
-            if (resultCode == Activity.RESULT_OK) {
-                resultado.setText(data.getIntExtra("sumaResult",0).toString())
+        if (requestCode == PICK_SUMA_REQUEST) {//difrenciamos el valor por si hemos lanzado mas de una startActivityForResult
+            if (resultCode == Activity.RESULT_OK) {//evaluamos valor
+                resultado.setText(data.getIntExtra("sumaResult",0).toString())//insertamos el resultado
             }else{
-                resultado.setText("Error al pasar datos")
+                resultado.setText("Error al pasar datos")//condicion de error
             }
         }
     }
